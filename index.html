@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>系統導向中...</title>
+</head>
+<body>
+    <script>
+        // 取得網址列中的參數 (例如 ?id=A001)
+        const params = new URLSearchParams(window.location.search);
+        const deviceId = params.get('id');
+
+        // 你的 Google Apps Script 正式網址 (末端需為 /exec)
+        const gasUrl = "https://script.google.com/macros/s/AKfycbw3nrXw54O3-PAuSretK9PGs7yUi_PNHPaNJQZFoAFE3Qi1XiFX-ZJlZ3vIj75akhmm/exec";
+
+        if (deviceId) {
+            // 使用 replace 跳轉，並加上隨機參數避免快取
+            window.location.replace(gasUrl + "?id=" + deviceId + "&t=" + new Date().getTime());
+        } else {
+            document.body.innerHTML = "<h3>無效的設備 ID，請重新掃描。</h3>";
+        }
+    </script>
+</body>
+</html>
